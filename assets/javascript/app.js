@@ -16,9 +16,9 @@ $("#start").click(function(){
     for (var i = 0; i<quiz.length; i++) {
        // $("#quiz").append("<p>" + quiz[i].q + "</p>")
        var question = "<p>" + quiz[i].q + "</p>"
-       var choice1 = '<label class="radio-inline"><input type="radio" name="optradio">'+quiz[i].a + '</label>'
-       var choice2 = '<label class="radio-inline"><input type="radio" name="optradio">'+quiz[i].b + '</label>'
-       var choice3 = '<label class="radio-inline"><input type="radio" name="optradio">'+quiz[i].c + '</label>'
-       $("#quiz").append(question + choice1 + choice2 + choice3)
+       var choice1 = '<label class="radio-inline"><input type="radio" name=' + i + "'>"+quiz[i].a + '</label>'
+       var choice2 = '<label class="radio-inline"><input type="radio" name=' + i + "'>"+quiz[i].b + '</label>'
+       var choice3 = '<label class="radio-inline"><input type="radio" name=' + i + "'>"+quiz[i].c + '</label>'
+       $("#quiz").append("<div>" + question + choice1 + choice2 + choice3 + "</div>")
     }
 })
