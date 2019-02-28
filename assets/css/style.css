@@ -1,0 +1,12 @@
+body { 
+    background: url("https://s.abcnews.com/images/Entertainment/GTY_golden_girls_kab_150903_16x9_992.jpg"); 
+    background-size: cover;
+  }
+  #home {
+    background: rgba(255, 255, 255, .7); 
+    margin: 40px auto;
+    height: 500px;
+  }
+  .btn {
+      border: 2px solid black;
+  }
