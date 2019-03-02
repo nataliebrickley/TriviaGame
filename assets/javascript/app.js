@@ -18,7 +18,7 @@ var unanswered = 0;
 $("#start").click(function () {
     //change css properties
     $("#home").css({"padding-top":"20px","height":"100%", "margin-top":"20px", "padding-bottom":"20px"})
-    $("h1").css("font-size", "48px")
+    $("h1").css({"font-size":"48px", "margin-bottom":"5px"})
     //hide the start button
     $("#start").hide();
     //...show and start the timer
@@ -34,34 +34,24 @@ $("#start").click(function () {
     }, 1000);
     //...generate questions and options
     for (var i = 0; i < quiz.length; i++) {
-        // $("#quiz").append("<p>" + quiz[i].q + "</p>")
         var question = "<p class='question'>" + quiz[i].q + "</p><br>"
-        var answer = quiz[i].answer;
         var choice1 = '<input type="radio" value="a" name=' + i + ">" + quiz[i].a
         var choice2 = '<input type="radio" value="b" name=' + i + ">" + quiz[i].b
         var choice3 = '<input type="radio" value="c" name=' + i + ">" + quiz[i].c
         //display questions and options
         $("#quiz").append("<div>" + question + choice1 + choice2 + choice3 + "</div>")
     }
-
-
-    //console.log which buttons were clicked
-    $("input").click(function () {
-        console.log($('input[name=' + 0 + ']:checked').val())
-    })
-
-    //..show the done button
+    //.. and show the done button
     $("#quiz").append("<button id='done'>Done</button>");
 
-
-
-    //when the done button is clicked...
+    //when the done button is clicked end the quiz and stop timer
     $("#done").click(function () {
         end();
         clearInterval(intervalId);
     })
 })
 
+//when the quiz ends...
 function end() {
     //compute the results
     for (var i = 0; i < quiz.length; i++) {
@@ -83,7 +73,9 @@ function end() {
     //...hide the quiz and timer
     $("#quiz").hide();
     $("#timer").hide();
-    //...and show the results
+    //...show the results
     $("#results").html("<p>All Done!</p><p>Correct Answers: " + correct + "</p><p>Incorrect Answers: " + incorrect + "</p><p>Unanswered Questions: " + unanswered + "</p>")
+    //...and show the video
+    $("#home").append('<iframe width="560" height="315" src="https://www.youtube.com/embed/HV7AXRABSng?start=8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
 }
 
