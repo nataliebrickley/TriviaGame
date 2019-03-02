@@ -1,16 +1,24 @@
 var quiz = [
-    { q: "Question 1", a: "choice1", b: "choice2", c: "choice3", answer: "b" },
-    { q: "Question 2", a: "choice1", b: "choice2", c: "choice3", answer: "c" },
-    { q: "Question 3", a: "choice1", b: "choice2", c: "choice3", answer: "a" },
-    { q: "Question 4", a: "choice1", b: "choice2", c: "choice3", answer: "a" },
-    { q: "Question 5", a: "choice1", b: "choice2", c: "choice3", answer: "c" }
+    { q: "Actress Betty White plays which of the following characters?", a: "Sophia", b: "Rose", c: "Dorothy", answer: "b" },
+    { q: "Golden Girls is set in which city?", a: "Los Angeles", b: "San Francisco", c: "Miami", answer: "c" },
+    { q: "What dessert are the girls obsessed with?", a: "Cheesecake", b: "Apple Pie", c: "Strawberry Shortcake", answer: "a" },
+    { q: "What is the name of the retirement home that Sophia lived in?", a: "Shady Pines", b: "Torrey Pines", c: "Lovely Pines", answer: "a" },
+    { q: "Where is Rose from?", a: "Sicily", b: "Georgia", c: "St. Olaf", answer: "c" },
+    { q: "What was Sophia's husband's name?", a: "Charlie", b: "Sal", c: "Vinny", answer: "b" },
+    { q: "What is Sophia's nickname for Dorothy?", a: "Pussycat", b: "Crankypants", c: "Cupcake", answer: "a" },
+    { q: "Which actress played the role of Blanche?", a: "Bea Arthur", b: "Rue McClanahan", c: "Estelle Getty", answer: "b" },
+    { q: 'The Golden Girls theme song proclaims: "Thank you for being _____', a: "There for me", b: "A friend", c: "So kind", answer: "b" },
+    { q: "What is Sophia's catchphrase?", a: '"Imagine it..."', b: '"I can see it now..."', c: '"Picture it..."', answer: "c" }
 ]
-var timer = 10;
+var timer = 120;
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 //when the start button is clicked...
 $("#start").click(function () {
+    //change css properties
+    $("#home").css({"padding-top":"20px","height":"100%", "margin-top":"20px", "padding-bottom":"20px"})
+    $("h1").css("font-size", "48px")
     //hide the start button
     $("#start").hide();
     //...show and start the timer
@@ -21,12 +29,13 @@ $("#start").click(function () {
         //if the timer reaches 0 end the quiz
         if (timer === 0) {
             end();
+            clearInterval(intervalId);
         }
     }, 1000);
     //...generate questions and options
     for (var i = 0; i < quiz.length; i++) {
         // $("#quiz").append("<p>" + quiz[i].q + "</p>")
-        var question = "<p>" + quiz[i].q + "</p>"
+        var question = "<p class='question'>" + quiz[i].q + "</p><br>"
         var answer = quiz[i].answer;
         var choice1 = '<input type="radio" value="a" name=' + i + ">" + quiz[i].a
         var choice2 = '<input type="radio" value="b" name=' + i + ">" + quiz[i].b
@@ -49,6 +58,7 @@ $("#start").click(function () {
     //when the done button is clicked...
     $("#done").click(function () {
         end();
+        clearInterval(intervalId);
     })
 })
 
@@ -67,6 +77,8 @@ function end() {
         else {
             incorrect++;
         }
+    //change css
+    $("#home").css("margin-top", "100px")    
     }
     //...hide the quiz and timer
     $("#quiz").hide();
